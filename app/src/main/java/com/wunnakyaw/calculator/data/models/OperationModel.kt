@@ -1,8 +1,8 @@
 package com.wunnakyaw.calculator.data.models
 
-import androidx.compose.ui.graphics.Color
+import com.wunnakyaw.calculator.utils.ButtonActionType
 
 data class OperationModel(
     val value: String,
-    val buttonColor: Color
+    val type: ButtonActionType = ButtonActionType.DEFAULT,
 )

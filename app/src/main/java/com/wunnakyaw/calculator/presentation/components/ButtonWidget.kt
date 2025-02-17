@@ -2,7 +2,6 @@ package com.wunnakyaw.calculator.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -21,13 +20,12 @@ import com.wunnakyaw.calculator.ui.theme.White
 
 @Composable
 fun ButtonWidget(
-    modifier: Modifier = Modifier,
     text: String,
     buttonColor: Color = PurpleGrey40,
     onClick: () -> Unit
 ) {
     TextButton(
-        onClick = { onClick() },
+        onClick = onClick,
         modifier = Modifier
             .clip(RoundedCornerShape(30))
             .height(100.dp)
