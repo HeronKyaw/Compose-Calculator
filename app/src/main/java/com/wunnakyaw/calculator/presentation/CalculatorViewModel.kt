@@ -29,17 +29,19 @@ class CalculatorViewModel: ViewModel() {
 
     fun onButtonClicked(button: String) {
         _prevExpression.value = ""
-        _expression.value = if (_expression.value == "0") {
-            button
-        } else if (operatorsList.contains(button)) {
+        _expression.value = if (operatorsList.contains(button)) {
             if (operatorsList.contains(_expression.value.last().toString())) {
              _expression.value.dropLast(1) + delimiter + button
             } else {
                 _expression.value + delimiter + button
             }
         } else {
-            if (operatorsList.contains(_expression.value.last().toString())) {
+            if (_expression.value == "0") {
+                button
+            } else if (operatorsList.contains(_expression.value.last().toString())) {
                 _expression.value + delimiter + button
+            } else if (_expression.value.contains(".") && button.contains(".")) {
+                _expression.value
             } else {
                 _expression.value + button
             }
@@ -98,7 +100,7 @@ class CalculatorViewModel: ViewModel() {
                 val result = when (currentOperator) {
                     "+" -> CalculateUtils.add(firstNumber.toDouble(), secondNumber.toDouble())
                     "-" -> CalculateUtils.subtract(firstNumber.toDouble(), secondNumber.toDouble())
-                    "x" -> CalculateUtils.multiply(firstNumber.toDouble(), secondNumber.toDouble())
+                    "×" -> CalculateUtils.multiply(firstNumber.toDouble(), secondNumber.toDouble())
                     "÷" -> CalculateUtils.divide(firstNumber.toDouble(), secondNumber.toDouble())
                     "%" -> CalculateUtils.modulus(firstNumber.toDouble(), secondNumber.toDouble())
                     else -> 0.0
